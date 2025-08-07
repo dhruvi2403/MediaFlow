@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Previous styles remain the same -->
+    <style>
+        /* Previous CSS remains the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #6b48ff, #ff4880);
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            width: 768px;
+            max-width: 100%;
+            min-height: 480px;
+        }
+
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+        }
+
+        form {
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin: 0;
+            margin-bottom: 15px;
+        }
+
+        input {
+            background: #eee;
+            border: none;
+            padding: 12px 15px;
+            margin: 8px 0;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        button {
+            border-radius: 20px;
+            border: 1px solid #ff4880;
+            background: #ff4880;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        button.ghost {
+            background-color: transparent;
+            border-color: #FFFFFF;
+        }
+
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        .overlay {
+            background: linear-gradient(to right, #ff4880, #6b48ff);
+            color: #FFFFFF;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        .social-container {
+            margin: 20px 0;
+        }
+
+        .social-container a {
+            border: 1px solid #DDDDDD;
+            border-radius: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            height: 40px;
+            width: 40px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .error {
+            color: #ff4880;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        input.invalid {
+            border: 1px solid #ff4880;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+
+    <script>
+        // Firebase configuration - Replace with your config
+
+        const firebaseConfig = {
+            apiKey: "ENTER-YOUR-API-KEY",
+            authDomain: "ENTER-YOUR-AUTHDOMAIN",
+            projectId: "ENTER-YOUR-PROJECT-ID",
+            storageBucket: "ENTER-YOUR-STORAGE-BUCKET",
+            messagingSenderId: "ENTER-YOUR-MESSAGEID",
+            appId: "ENTER-YOUR-APPID"
+        };
+
+
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Sign Up Function
+        async function handleSignUp(email, password, name) {
+            try {
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                await userCredential.user.updateProfile({
+                    displayName: name
+                });
+                return { success: true, user: userCredential.user };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        // Sign In Function
+        async function handleSignIn(email, password) {
+            try {
+                const userCredential = await auth.signInWithEmailAndPassword(email, password);
+                return { success: true, user: userCredential.user };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        // Social Media Authentication
+        async function handleSocialAuth(provider) {
+            try {
+                let authProvider;
+                switch (provider) {
+                    case 'google':
+                        authProvider = new firebase.auth.GoogleAuthProvider();
+                        break;
+                    case 'facebook':
+                        authProvider = new firebase.auth.FacebookAuthProvider();
+                        break;
+                    case 'linkedin':
+                        authProvider = new firebase.auth.OAuthProvider('linkedin.com');
+                        break;
+                }
+                const result = await auth.signInWithPopup(authProvider);
+                return { success: true, user: result.user };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        // Password Reset
+        async function handlePasswordReset(email) {
+            try {
+                await auth.sendPasswordResetEmail(email);
+                return { success: true };
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            // all your JS code goes here (signup/signin event listeners, button logic, etc.)
+            // Update your existing form submissions
+            document.getElementById('signupForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const nameInput = document.getElementById('signupName');
+                const emailInput = document.getElementById('signupEmail');
+                const passwordInput = document.getElementById('signupPassword');
+                const successMessage = document.getElementById('signupSuccess');
+
+                const nameValid = validateInput(nameInput, patterns.name, document.getElementById('nameError'));
+                const emailValid = validateInput(emailInput, patterns.email, document.getElementById('emailError'));
+                const passwordValid = validateInput(passwordInput, patterns.password, document.getElementById('passwordError'));
+
+                if (nameValid && emailValid && passwordValid) {
+                    const result = await handleSignUp(emailInput.value, passwordInput.value, nameInput.value);
+
+                    if (result.success) {
+                        successMessage.textContent = 'Account created successfully!';
+                        successMessage.style.display = 'block';
+                        signupForm.reset();
+                        setTimeout(() => {
+                            window.location.href = "home.html"; 
+                            successMessage.style.display = 'none';
+                            container.classList.remove('right-panel-active');
+                        }, 2000);
+                    } else {
+                        successMessage.textContent = result.error;
+                        successMessage.style.color = '#ff4880';
+                        successMessage.style.display = 'block';
+                    }
+                }
+            });
+
+
+
+
+
+            document.getElementById('signinForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const emailInput = document.getElementById('signinEmail');
+                const passwordInput = document.getElementById('signinPassword');
+                const successMessage = document.getElementById('signinSuccess');
+
+                const emailValid = validateInput(emailInput, patterns.email, document.getElementById('signinEmailError'));
+                const passwordValid = passwordInput.value.length > 0;
+
+                if (emailValid && passwordValid) {
+                    const result = await handleSignIn(emailInput.value, passwordInput.value);
+
+                    if (result.success) {
+                        successMessage.textContent = 'Signed in successfully!';
+                        successMessage.style.display = 'block';
+                        signinForm.reset();
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                            window.location.href = "home.html";  
+                        }, 2000);
+                    } else {
+                        successMessage.textContent = result.error;
+                        successMessage.style.color = '#ff4880';
+                        successMessage.style.display = 'block';
+                    }
+                }
+            });
+
+            // Update social media functions
+            function socialSignup(platform) {
+                handleSocialAuth(platform).then(result => {
+                    if (result.success) {
+                        const successMessage = document.getElementById('signupSuccess');
+                        successMessage.textContent = 'Signed up successfully with ' + platform;
+                        successMessage.style.display = 'block';
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 2000);
+                    } else {
+                        alert(result.error);
+                    }
+                });
+            }
+
+            function socialSignin(platform) {
+                handleSocialAuth(platform).then(result => {
+                    if (result.success) {
+                        const successMessage = document.getElementById('signinSuccess');
+                        successMessage.textContent = 'Signed in successfully with ' + platform;
+                        successMessage.style.display = 'block';
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 2000);
+                    } else {
+                        alert(result.error);
+                    }
+                });
+            }
+
+
+            // Add this for toggling UI between sign in and sign up
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+
+   
+        });
+
+        // Update forgot password function
+        function forgotPassword() {
+            const email = document.getElementById('signinEmail').value;
+            if (patterns.email.test(email)) {
+                handlePasswordReset(email).then(result => {
+                    if (result.success) {
+                        alert(`Password reset link sent to ${email}`);
+                    } else {
+                        alert(result.error);
+                    }
+                });
+            } else {
+                alert('Please enter a valid email address first');
+            }
+        }
+
+        
+        // Example of input patterns (define these somewhere)
+        const patterns = {
+            name: /^.{2,}$/,
+            email: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+            password: /^(?=.*\d)(?=.*[A-Za-z]).{8,}$/
+        };
+
+        function validateInput(inputElement, pattern, errorElement) {
+            if (pattern.test(inputElement.value)) {
+                inputElement.classList.remove('invalid');
+                errorElement.style.display = 'none';
+                return true;
+            } else {
+                inputElement.classList.add('invalid');
+                errorElement.style.display = 'block';
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<!-- Rest of your HTML remains the same -->
+
+<body>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="signupForm" novalidate>
+                <h1>Create Account</h1>
+                <input type="text" id="signupName" placeholder="Name" />
+                <span class="error" id="nameError">Name must be at least 2 characters long</span>
+                <input type="email" id="signupEmail" placeholder="Email" />
+                <span class="error" id="emailError">Please enter a valid email address</span>
+                <input type="password" id="signupPassword" placeholder="Password" />
+                <span class="error" id="passwordError">Password must be at least 8 characters with numbers and
+                    letters</span>
+                <button type="submit">Sign Up</button>
+                <span class="success-message" id="signupSuccess">Account created successfully!</span>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="signinForm" novalidate>
+                <h1>Sign in</h1>
+                <input type="email" id="signinEmail" placeholder="Email" />
+                <span class="error" id="signinEmailError">Please enter a valid email address</span>
+                <input type="password" id="signinPassword" placeholder="Password" />
+                <span class="error" id="signinPasswordError">Please enter your password</span>
+                <a href="#" onclick="forgotPassword()"
+                    style="margin: 15px 0; color: #333; text-decoration: none;">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+                <span class="success-message" id="signinSuccess">Signed in successfully!</span>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

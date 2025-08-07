@@ -1,0 +1,2517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reels</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            /* color: #fff; */
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #fafafa;
+        }
+
+      :root {
+        --ig-primary: #0095f6;
+        --ig-secondary: #262626;
+        --ig-border: #dbdbdb;
+        --ig-background: #fafafa;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        background-color: var(--ig-background);
+      }
+
+      /* Navigation Bar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-bottom: 1px solid var(--ig-border);
+        z-index: 1000;
+        height:60px;/*///////*/
+      }
+
+      .nav-container {
+        max-width: 975px;
+        margin: 0 auto;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+
+      .logo {
+        height: 36px;
+        cursor: pointer;
+      }
+
+      .nav-icons {
+        display: flex;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .nav-icon {
+        font-size: 24px;
+        text-decoration: none;
+        color: var(--ig-secondary);
+        cursor: pointer;
+      }
+
+
+      
+        /* Desktop Navbar */
+        .navbar-desktop {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            background: white;
+            border-right: 1px solid #dbdbdb;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            padding: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            text-decoration: none;
+            color: black;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .nav-link i {
+            font-size: 24px;
+            margin-right: 16px;
+            width: 24px;
+        }
+
+        /* More Dropdown Styles */
+        .more-container {
+            position: relative;
+            margin-top: auto;
+        }
+
+        .more-dropdown {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            display: none;
+            padding: 8px 0;
+            margin-bottom: 8px;
+        }
+
+        .more-dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            text-decoration: none;
+            color: black;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .dropdown-item i {
+            font-size: 20px;
+            margin-right: 16px;
+            width: 24px;
+        }
+
+        /* Mobile Navbar */
+        .navbar-mobile {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-top: 1px solid #dbdbdb;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .mobile-nav-link {
+            color: black;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .mobile-nav-link i {
+            font-size: 24px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1031px) {
+            .navbar-desktop {
+                display: none;
+            }
+            
+            .navbar-mobile {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                margin-bottom: 60px;
+            }
+
+            .mobile-nav-link span {
+                display: none;
+            }
+        }
+
+        .logo-img {
+            height: 64px;
+            cursor: pointer;
+            position: fixed;
+            top: 0;
+            left: 2%;
+            padding: -5px;
+        }
+        .mediaflow-logo {
+            position: fixed;
+            left: 6%;
+            font-size: 35px;
+            font-family: 'Pacifico', cursive;
+            background: linear-gradient(to right, #f32170, #c508ff, #2387cf);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: translateX(0);
+        }
+
+        .nav-link.active {
+            font-weight: bold;
+            background-color: #f0f0f0;
+        }
+
+        .nav-link:active {
+            transform: scale(0.95);
+        }
+
+        /* Animation for icon click */
+        .icon-click {
+            animation: iconClick 0.3s ease;
+        }
+
+        @keyframes iconClick {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.9); }
+            100% { transform: scale(1); }
+        }
+
+
+        .reels-container {
+            /* height: 100vh; */
+            height: calc(100vh - 120px);
+            width:500px;
+            margin: auto; /*/////////*/
+            margin-top: 60px;/*////////*/
+           /* margin-bottom:60px;/////*/
+            scroll-snap-type: y mandatory;
+            background-color: black;
+            overflow-y: scroll;
+            scrollbar-width: none;
+        }
+
+        .reels-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reel {
+            /* height: 100vh; */
+            height: calc(100vh - 120px);
+            position: relative;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .reel-video {
+            width: 100%;
+            height: 100%;
+            object-fit:cover;
+        }
+
+        .reel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        }
+
+        .reel-actions {
+            position: absolute;
+            right: 20px;
+            bottom: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .action-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-button i {
+            font-size: 24px;
+        }
+
+        .action-count {
+            font-size: 12px;
+        }
+
+        .reel-info {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 80px;
+        }
+
+        .reel-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .reel-caption {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        /* .comment-section {
+             position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background: #262626;
+            transition: height 0.3s ease;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            z-index: 1000; 
+
+            position: fixed;
+            bottom: -100vh;  Start from below the viewport 
+            left: 0;
+            right: 0;
+            height: 60vh;
+            background: #d0cccc;/////
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            z-index: 1000;
+            transition: bottom 0.3s ease;
+        }
+
+        .comment-section.active {
+            bottom:0;
+            height: 60vh;
+        }
+
+        .comment-header {
+            padding: 15px;
+            border-bottom: 1px solid #d0cccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comment-list {
+            padding: 15px;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+        }
+
+        .comment-input-area {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: #d0cccc;
+            border-top: 1px solid #d0cccc;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background: #d0cccc;
+            color: #141313;
+        } */
+
+        .comment-section {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: white;
+            border-radius: 20px 20px 0 0;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            
+        }
+
+        .comment-section.active {
+            transform: translateY(0);
+        }
+
+        .comment-header {
+            padding: 15px;
+            border-bottom: 1px solid #dbdbdb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color:black
+        }
+
+        .comment-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .comments-container {
+            height: calc(100% - 120px);
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .comment {
+            display: flex;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-content {
+            flex: 1;
+            color: #000;
+
+        }
+
+        .comment-username {
+            font-weight: 600;
+            margin-right: 8px;
+            color: black;
+        }
+
+        .comment-text {
+            color: black;
+        }
+
+        .comment-input-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: white;
+            border-top: 1px solid #dbdbdb;
+            display: flex;
+            gap: 10px;
+        }
+
+        .comment-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #dbdbdb;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .post-comment-btn {
+            background: #0095f6;
+            color:white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+
+        .share-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+
+        .share-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 20px;
+        }
+
+        .share-option {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .share-option:hover {
+            background: #dbdbdb;
+            border-radius: 8px;
+        }
+
+        .like-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            color: #fff;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-animation {
+            transform: scale(1.2);
+            transition: transform 0.2s ease;
+        }
+
+        /* .comment {
+            padding: 10px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-username {
+            font-weight: bold;
+            margin-right: 8px;
+        } */
+
+        /* .comment-text {
+            color: #fff;
+        } */
+
+
+        .settings-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.settings-content {
+    position: relative;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--ig-border);
+}
+
+.settings-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-settings {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.change-status-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--ig-primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.change-status-btn:hover {
+    opacity: 0.9;
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 2100;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.report-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.report-content {
+    position: relative;
+    background-color: white;
+    margin:7% auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-report {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.report-form-group {
+    margin-bottom: 20px;
+}
+
+.report-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #262626;
+}
+
+.report-form-group input,
+.report-form-group select,
+.report-form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--ig-border);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.report-form-group textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+#report-submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--ig-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#report-submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.report-alert {
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: none;
+}
+
+.report-alert-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+
+.saved-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+        }
+
+        .saved-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            width: 90%;
+            max-width: 935px;
+            height: 80vh;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .saved-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--ig-border);
+        }
+
+        .saved-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .close-saved {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .saved-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--ig-border);
+        }
+
+        .saved-tab {
+            flex: 1;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--ig-secondary);
+            background: none;
+            border: none;
+        }
+
+        .saved-tab.active {
+            border-bottom: 2px solid var(--ig-secondary);
+        }
+
+        .saved-content-area {
+            padding: 20px;
+            height: calc(100% - 120px);
+            overflow-y: auto;
+        }
+
+        .saved-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            padding: 20px;
+        }
+
+        .saved-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .saved-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .saved-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .saved-item:hover .saved-item-overlay {
+            opacity: 1;
+        }
+
+        .saved-stats {
+            display: flex;
+            gap: 20px;
+            font-weight: 600;
+        }
+
+        .saved-stat {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .no-saved-content {
+            text-align: center;
+            padding: 40px;
+            color: #8e8e8e;
+        }
+
+        .logout-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logout-content {
+            background-color: white;
+            padding: 24px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logout-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #262626;
+        }
+
+        .logout-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 24px;
+        }
+
+        .logout-btn {
+            padding: 8px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: none;
+        }
+
+        .logout-yes {
+            background-color: #ed4956;
+            color: white;
+        }
+
+        .logout-yes:hover {
+            background-color: #c73340;
+        }
+
+        .logout-cancel {
+            background-color: #efefef;
+            color: #262626;
+        }
+
+        .logout-cancel:hover {
+            background-color: #dbdbdb;
+        }
+
+    </style>
+</head>
+<body>
+
+     <!-- Desktop Navbar -->
+     <nav class="navbar-desktop">
+        <div class="logo"></div>
+        <div class="nav-links">
+            <a href="home.html" class="nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="search.html" class="nav-link">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="explore.html" class="nav-link">
+                <i class="fas fa-compass"></i>
+                <span>Explore</span>
+            </a>
+            <a href="reels.html" class="nav-link">
+                <i class="fas fa-film"></i>
+                <span>Reels</span>
+            </a>
+            <a href="messages.html" class="nav-link">
+                <i class="fas fa-paper-plane"></i>
+                <span>Messages</span>
+            </a>
+            <a href="notifications.html" class="nav-link">
+                <i class="far fa-heart"></i>
+                <span>Notifications</span>
+            </a>
+            <a href="create.html" class="nav-link">
+                <i class="fas fa-plus-square"></i>
+                <span>Create</span>
+            </a>
+            <a href="profile.html" class="nav-link">
+                <i class="fas fa-user-circle"></i>
+                <span>Profile</span>
+            </a>
+            
+            <!-- More Menu -->
+            <div class="more-container">
+                <a href="#" class="nav-link" id="more-menu-btn">
+                    <i class="fas fa-bars"></i>
+                    <span>More</span>
+                </a>
+                <div class="more-dropdown" id="more-dropdown">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <!-- <a href="#" class="dropdown-item">
+                        <i class="fas fa-history"></i>
+                        <span>Your Activity</span>
+                    </a> -->
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Saved</span>
+                    </a>
+                    <!-- <a href="#" class="dropdown-item">
+                        <i class="fas fa-moon"></i>
+                        <span>Switch appearance</span>
+                    </a> -->
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-flag"></i>
+                        <span>Report a problem</span>
+                    </a>
+                    <!-- <a href="#" class="dropdown-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log out</span>
+                    </a> -->
+                    <a href="#" class="dropdown-item" id="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log out</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <nav class="navbar">
+            <div class="nav-container">
+              <!-- <img src="/api/placeholder/103/29" alt="Instagram" class="logo" /> -->
+               <!-- <div class="mediaflow-logo">Mediaflow</div> -->
+               <img src="mediaflow_logo.png" alt="mediaflow logo" class="logo-img">
+               <div class="mediaflow-logo">Mediaflow</div>
+            </div>
+          </nav>
+    </nav>
+
+    <!-- Mobile Navbar -->
+    <nav class="navbar-mobile">
+        <div class="mobile-nav-links">
+            <a href="home.html" class="mobile-nav-link">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="search.html" class="mobile-nav-link">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </a>
+            <a href="create.html" class="mobile-nav-link">
+                <i class="fas fa-plus-square"></i>
+                <span>Create</span>
+            </a>
+            <a href="reels.html" class="mobile-nav-link">
+                <i class="fas fa-film"></i>
+                <span>Reels</span>
+            </a>
+            <a href="profile.html" class="mobile-nav-link">
+                <i class="fas fa-user-circle"></i>
+                <span>Profile</span>
+            </a>
+        </div>
+        <nav class="navbar">
+            <div class="nav-container">
+              <!-- <img src="/api/placeholder/103/29" alt="Instagram" class="logo" /> -->
+              <div><img src="mediaflow_logo.png" alt="mediaflow logo" class="logo-img"></div>
+              <div class="nav-icons">
+                <a href="create.html" class="nav-icon fa-regular fa-square-plus"></a>
+                <a href="notifications.html" class="nav-icon fa-regular fa-heart"></a>
+                <a href="messages.html" class="nav-icon fa-regular fa-paper-plane"></a>
+              </div>
+            </div>
+          </nav>
+    </nav>
+
+    <!-- Main Content -->
+  
+    <div class="reels-container">
+        <!-- Reels will be dynamically added here -->
+    </div>
+
+    <!-- Comment Section -->
+    <!-- <div class="comment-section">
+        <div class="comment-header">
+            <h3>Comments</h3>
+            <i class="fas fa-times" onclick="closeComments()"></i>
+        </div>
+        <div class="comment-list">
+             Comments will be dynamically added here
+        </div>
+        <div class="comment-input-area">
+            <input type="text" class="comment-input" placeholder="Add a comment...">
+        </div>
+    </div> -->
+      <!-- Comment Section -->
+      <div class="comment-section" id="commentSection">
+        <div class="comment-header">
+            <h3>Comments</h3>
+            <button class="comment-close" onclick="toggleComments()">×</button>
+        </div>
+        <div class="comments-container" id="commentsContainer">
+            <!-- Comments will be dynamically added here -->
+        </div>
+        <div class="comment-input-container">
+            <input type="text" class="comment-input" id="commentInput" placeholder="Add a comment...">
+            <button class="post-comment-btn" onclick="postComment()">Post</button>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="share-modal">
+        <div class="share-content">
+            <div class="share-option" onclick="shareToSocial('instagram')">
+                <i class="fab fa-instagram"></i>
+                <span>Share to Instagram</span>
+            </div>
+            <div class="share-option" onclick="shareToSocial('facebook')">
+                <i class="fab fa-facebook"></i>
+                <span>Share to Facebook</span>
+            </div>
+            <div class="share-option" onclick="shareToSocial('twitter')">
+                <i class="fab fa-twitter"></i>
+                <span>Share to Twitter</span>
+            </div>
+            <div class="share-option" onclick="closeShareModal()">
+                <i class="fas fa-times"></i>
+                <span>Close</span>
+            </div>
+        </div>
+    </div>
+
+      <!-- setting -->
+      <div id="settings-modal" class="settings-modal">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h2>Profile Status</h2>
+                <span class="close-settings">&times;</span>
+            </div>
+            <div class="settings-body">
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="profile-status" value="public" checked>
+                        Public
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="profile-status" value="private">
+                        Private
+                    </label>
+                </div>
+                <button class="change-status-btn">Change Your Profile Status</button>
+            </div>
+        </div>
+    </div>
+    
+   
+    <!--report-->
+    <div id="report-modal" class="report-modal">
+        <div class="report-content">
+            <span class="close-report">&times;</span>
+            <h2>Report a Problem</h2>
+            
+            <div id="report-success-alert" class="report-alert report-alert-success">
+                Your report has been submitted successfully!
+            </div>
+    
+            <form id="reportForm">
+                <div class="report-form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="technical">Technical Issue</option>
+                        <option value="account">Account Problem</option>
+                        <option value="content">Content Report</option>
+                        <option value="harassment">Harassment/Bullying</option>
+                        <option value="privacy">Privacy Concern</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+    
+                <div class="report-form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" required placeholder="Brief title of the problem">
+                </div>
+    
+                <div class="report-form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" required placeholder="Please describe the problem in detail"></textarea>
+                </div>
+    
+                <div class="report-form-group">
+                    <label for="email">Your Email:</label>
+                    <input type="email" id="email" required placeholder="your@email.com">
+                </div>
+    
+                <button type="submit" id="report-submit-btn">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="saved-modal" class="saved-modal">
+      <div class="saved-content">
+          <div class="saved-header">
+              <h2 class="saved-title">Saved</h2>
+              <span class="close-saved">&times;</span>
+          </div>
+          <div class="saved-tabs">
+              <button class="saved-tab active" data-tab="posts">Posts</button>
+              <button class="saved-tab" data-tab="reels">Reels</button>
+          </div>
+          <div class="saved-content-area">
+              <div id="saved-posts" class="saved-grid"></div>
+              <div id="saved-reels" class="saved-grid" style="display: none;"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="logout-modal" class="logout-modal" style="display: none;">
+    <div class="logout-content">
+        <h2 class="logout-title">Are you sure you want to log out?</h2>
+        <div class="logout-buttons">
+            <button class="logout-btn logout-cancel" id="logout-cancel">Cancel</button>
+            <button class="logout-btn logout-yes" id="logout-yes">Yes</button>
+        </div>
+    </div>
+</div>
+
+
+    <script>
+
+
+const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!link.id === 'more-menu-btn') {
+                    e.preventDefault();
+                    // Remove active class from all links
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    // Add active class to clicked link
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // More dropdown functionality
+        const moreMenuBtn = document.getElementById('more-menu-btn');
+        const moreDropdown = document.getElementById('more-dropdown');
+
+        moreMenuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moreDropdown.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!moreMenuBtn.contains(e.target) && !moreDropdown.contains(e.target)) {
+                moreDropdown.classList.remove('show');
+            }
+        });
+
+document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    return; // Allow actual navigation for real links
+                }
+                
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Add click animation
+                const icon = this.querySelector('i');
+                icon.classList.add('icon-click');
+                
+                // Remove animation class after it completes
+                setTimeout(() => {
+                    icon.classList.remove('icon-click');
+                }, 300);
+                
+                // Navigate to corresponding page
+                const page = this.getAttribute('data-page');
+                if (page) {
+                    window.location.href = page + '.html';
+                }
+            });
+        });
+      
+        // Sample reels data
+        const reelsData = [
+        {
+          id: 1,
+          video: "reels/g-1.mp4",
+          user: {
+            username: "sharma_jetshree",
+            avatar: "photos/pg-1.jpg",
+          },
+          caption: "Saree vibes & confident strides! 💃🔥 #indianwear #saree",
+          likes: 152,
+          comments: ["Saree + You = Pure perfection!", "Khooobsurat!!"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 2,
+          video: "reels/g-2.mp4",
+          user: {
+            username: "dhruvi_patel",
+            avatar: "photos/pg-2.jpg",
+          },
+          caption: "કુદરતની જાદુઈ સુંદરતા! 😍🌍",
+          likes: 211,
+          comments: ["પ્રકૃતિની અનોખી ભેટ! 😍","Such a beautiful place","yaha pe kitni shanti hoti hogi na?"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 3,
+          video: "reels/g-3.mp4",
+          user: {
+            username: "_urvi_patel_",
+            avatar: "photos/pg-3.jpg",
+          },
+          caption: "Steering apne haathon mein, safar apni raahon ka! 😎 #GirlOnWheels #DriveLikeAQueen",
+          likes: 364,
+          comments: ["Swag bhi, speed bhi!","Boss lady on wheels! 💃"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 4,
+          video: "reels/b-1.mp4",
+          user: {
+            username: "patel_kirsh",
+            avatar: "photos/pb-1.jpg",
+          },
+          caption: "❄️❄️❄️Lost in the magic of falling snow❄️❄️❄️ #SnowDay #WinterModeOn",
+          likes: 183,
+          comments: ["Chilling like a pro","Which place?","Winter never looked this cool","Bhai aap Gulmarg gaye ho?"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 5,
+          video: "reels/bg-1.mp4",
+          user: {
+            username: "464_parth",
+            avatar: "photos/pb-2.jpg",
+          },
+          caption: "Sunsets are better when we’re together 🌅 #travel #wanderlust",
+          likes: 152,
+          comments: ["Love + sunset = pure magic", "Couple goals at its finest! 💕"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 6,
+          video: "reels/fg-1.mp4",
+          user: {
+            username: "avni_shah",
+            avatar: "photos/pg-4.jpg",
+          },
+          caption: "Partners in crime, sisters by heart! 👯‍♀️ #DostiZindabad #SoulSisters #MastiKiDukaan",
+          likes: 211,
+          comments: ["इससे बेहतर जोड़ी कोई नहीं!","🔥🔥🔥🔥🔥","I Need a friend like you"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 7,
+          video: "reels/b-2.mp4",
+          user: {
+            username: "jay_987",
+            avatar: "photos/pb-3.jpg",
+          },
+          caption: "टूटे हुए दिल की आवाज़ कोई नहीं सुनता… 🚶‍♂️💔 #BrokenHeart #AloneButStrong",
+          likes: 344,
+          comments: ["दर्द को महसूस किया जा सकता है, कहा नहीं जा सकता…"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 8,
+          video: "reels/fg-2.mp4",
+          user: {
+            username: "yashvi._.singh",
+            avatar: "photos/pg-5.jpg",
+          },
+          caption: "Trips are better when your bestie is by your side Trips are better when your bestie is by your side",
+          likes: 123,
+          comments: ["Mere friends k saath ki trip to sapno mein hi rah gayi🥲","The trip may end, but the memories last forever✨✨✨"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 9,
+          video: "reels/group-1.mp4",
+          user: {
+            username: "modi_divy",
+            avatar: "photos/pb-4.jpg",
+          },
+          caption: "Friends like family, memories for life #SquadGoals ",
+          likes: 142,
+          comments: ["Good times","great memories", "I am blessed to have a similar friend group","amazing people", "Aaise friends to main bhi deserve karti hu!😭😭😭"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 10,
+          video: "reels/g-4.mp4",
+          user: {
+            username: "jiya_998",
+            avatar: "photos/pg-6.jpg",
+          },
+          caption: "Gujjus are simple...#gujarati #gujju #enjoylife",
+          likes: 211,
+          comments: ["Garba in our hearts, dhokla in our plates, and happiness in our souls","Fun, food, and dandiya bus aatlu j joie life ma."],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 11,
+          video: "reels/b-3.mp4",
+          user: {
+            username: "deep_patel",
+            avatar: "photos/pb-5.jpg",
+          },
+          caption: "राय से दूर रहो, खुद से जुड़ो #SpiritualAwakening #LetGo #HealingJourney",
+          likes: 364,
+          comments: ["Inner peace is the real success","💯💯💯💯","I learnt this the hard way guys."],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 12,
+          video: "reels/group-2.mp4",
+          user: {
+            username: "_.anshhh._",
+            avatar: "photos/pb-6.jpg",
+          },
+          caption: "Jalsa che! Mumbai ni gaadi sathe Gujarati swag! 😍🎶#MumbaiNiGaadi#GroupMasti ",
+          likes: 153,
+          comments: ["Ekdam next level energy! Gujju power! 💃","Seems fun","Gujarati loko ho toh mahol toh hovu j joie! 😂"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 13,
+          video: "reels/fg-3.mp4",
+          user: {
+            username: "_divya_",
+            avatar: "photos/pg-7.jpg",
+          },
+          caption: "No drama, just pure fun and endless laughter💃💃💃 #MakingMemories#UnbreakableBond",
+          likes: 152,
+          comments: ["Besties + Fun = Unforgettable moments", "I am jealous of their great friendship!","Aaisa ek friend to sabke paas hona chahiye yrr...","I have a friens just like this"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 14,
+          video: "reels/group-3.mp4",
+          user: {
+            username: "_yash_",
+            avatar: "photos/pb-7.jpg",
+          },
+          caption: "Aakhir kaar sabke parents maan hi gaye",
+          likes: 231,
+          comments: ["Yayyyy!!","👏👏🙌👏","Aapki ye trip k memories aapko hamesha yaad rahegi","Have a lots of fun","Have a happy and safe journey guys!"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 15,
+          video: "reels/group-4.mp4",
+          user: {
+            username: "kenipatel_12",
+            avatar: "photos/pg-8.jpg",
+          },
+          caption: "When the whole friend group shares a single brain cell #friendship #enjoylife",
+          likes: 364,
+          comments: ["🧠 One brain cell, unlimited chaos","Just vibes! 🤡💃","CollectiveChaos"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 16,
+          video: "reels/nature-2.mp4",
+          user: {
+            username: "dev_shah",
+            avatar: "photos/pb-8.jpg",
+          },
+          caption: "Guess I was ‘the one’… but not the only one.💔💔 #MovingOn #SelfWorth #LessonsLearned",
+          likes: 13,
+          comments: ["Their loss, your upgrade. 😉","Dodged a bullet, trust me.","hits hard!","glow-up harder then ever"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 17,
+          video: "reels/fg-4.mp4",
+          user: {
+            username: "mahii_27",
+            avatar: "photos/pg-9.jpg",
+          },
+          caption: "Khaas Doost #bestie #BFF #soulsisters",
+          likes: 152,
+          comments: ["दोस्ती ऐसी जो कभी न टूटे, साथ ऐसा जो कभी न छूटे! 💫","Doost hote bhi isiliye hai", "Jail together or fun together, no in-between! 🤣"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 18,
+          video: "reels/b-4.mp4",
+          user: {
+            username: "daksh_123",
+            avatar: "photos/pb-9.jpg",
+          },
+          caption: "Come to Dholavira! #handicraft #artisans #lostTreasure",
+          likes: 231,
+          comments: ["Habibi come to Dholavira","Aaisa toys to pehli baar dekha","road to heaven"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 19,
+          video: "reels/nature-3.mp4",
+          user: {
+            username: "hetviii",
+            avatar: "photos/pg-10.jpg",
+          },
+          caption: "Akelepan ka sukoon!☕📖 #MeTime #ChillingAlone #SoloVibes",
+          likes: 364,
+          comments: ["Enjoy the peace","खुद के साथ वक्त बिताना भी एक आर्ट है🎧📖"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        {
+          id: 20,
+          video: "reels/group-5.mp4",
+          user: {
+            username: "raj_gajjar",
+            avatar: "photos/pb-10.jpg",
+          },
+          caption: "We may be dumb, but at least we’re dumb together! 😂💃",
+          likes: 182,
+          comments: ["Naach re, ga re, masti ma friends forever!"],
+          isLiked: false,
+          isBookmarked: false,
+        },
+        ];
+
+        // Render reels
+//         function renderReels() {
+//             const container = document.querySelector('.reels-container');
+//             container.innerHTML = reelsData.map(reel => `
+//                 <div class="reel" data-reel-id="${reel.id}">
+//                     <video class="reel-video" loop onclick="togglePlay(this)">
+//                         <source src="${reel.video}" type="video/mp4">
+//                     </video>
+//                     <div class="like-animation">
+//                         <i class="fas fa-heart"></i>
+//                     </div>
+//                     <div class="reel-actions">
+//                         <button class="action-button" onclick="toggleLike(${reel.id})">
+//                             <i class="fa${reel.isLiked ? 's' : 'r'} fa-heart"></i>
+//                             <span class="action-count">${reel.likes}</span>
+//                         </button>
+//                        <button class="action-button" onclick="toggleComments(${reel.id})">
+//                             <i class="far fa-comment"></i>
+//                             <span class="action-count">${reel.comments.length}</span>
+//                         </button>
+//                         <button class="action-button" onclick="openShareModal()">
+//                             <i class="far fa-paper-plane"></i>
+//                         </button>
+//                         <button class="action-button" onclick="toggleBookmark(${reel.id})">
+//                             <i class="fa${reel.isBookmarked ? 's' : 'r'} fa-bookmark"></i>
+//                         </button>
+//                     </div>
+//                     <div class="reel-info">
+//                         <div class="reel-user">
+//                             <img src="${reel.user.avatar}" alt="" class="user-avatar">
+//                             <span>${reel.user.username}</span>
+//                         </div>
+//                         <div class="reel-caption">${reel.caption}</div>
+//                     </div>
+//                 </div>
+//             `).join('');
+
+//             // Start playing the first video
+//             // const firstVideo = document.querySelector('.reel-video');
+//             // if (firstVideo) firstVideo.play();
+//             /*/////////////////*/
+
+//     // Set up intersection observer for autoplay
+//     const observer = new IntersectionObserver((entries) => {
+//         entries.forEach(entry => {
+//             const video = entry.target.querySelector('video');
+//             if (entry.isIntersecting) {
+//                 // Pause all other videos
+//                 document.querySelectorAll('.reel-video').forEach(v => {
+//                     if (v !== video) {
+//                         v.pause();
+//                     }
+//                 });
+                
+//                 // Play the intersecting video
+//                 video.play().catch(error => {
+//                     console.log('Autoplay was prevented:', error);
+//                 });
+//             } else {
+//                 video.pause();
+//             }
+//         });
+//     }, { 
+//         threshold: 0.7,  // Adjust this value to control when video plays
+//         rootMargin: '0px'
+//     });
+
+//     // Observe all reels
+//     document.querySelectorAll('.reel').forEach(reel => {
+//         observer.observe(reel);
+//     });
+
+//     // Automatically start the first video when page loads
+//     const firstVideo = document.querySelector('.reel-video');
+//     if (firstVideo) {
+//         firstVideo.play().catch(error => {
+//             console.log('Initial autoplay was prevented:', error);
+//         });
+//     }
+// }
+// /*// Call renderReels on page load
+// document.addEventListener('DOMContentLoaded', renderReels);*/
+        
+
+//         // Initialize the page
+//         renderReels();
+
+//         // Handle video playback
+//         let currentVideo = null;
+//         // function togglePlay(video) {
+//         //     if (video.paused) {
+//         //         video.play();
+//         //     } else {
+//         //         video.pause();
+//         //     }
+//         // }
+//         function togglePlay(video) {
+//     // Stop all other videos first
+//     document.querySelectorAll('.reel-video').forEach(v => {
+//         if (v !== video) {
+//             v.pause();
+//         }
+//     });
+    
+//     if (video.paused) {
+//         video.play();
+//     } else {
+//         video.pause();
+//     }
+// }
+
+//         // Intersection Observer for auto-play
+//         // const observer = new IntersectionObserver((entries) => {
+//         //     entries.forEach(entry => {
+//         //         const video = entry.target.querySelector('video');
+//         //         if (entry.isIntersecting) {
+//         //             video.play();
+//         //             currentVideo = video;
+//         //         } else {
+//         //             video.pause();
+//         //         }
+//         //     });
+//         // }, { threshold: 0.5 });
+
+//         // document.querySelectorAll('.reel').forEach(reel => {
+//         //     observer.observe(reel);
+//         // });
+//         const observer = new IntersectionObserver((entries) => {
+//     entries.forEach(entry => {
+//         const video = entry.target.querySelector('video');
+//         if (entry.isIntersecting) {
+//             // Pause all other videos first
+//             document.querySelectorAll('.reel-video').forEach(v => {
+//                 if (v !== video) {
+//                     v.pause();
+//                 }
+//             });
+//             video.play();
+//             currentVideo = video;
+//         } else {
+//             video.pause();
+//         }
+//     });
+// }, { threshold: 0.5 });
+
+//         // // Double tap detection
+//         // let lastTap = 0;
+//         // document.addEventListener('touchend', function(event) {
+//         //     const currentTime = new Date().getTime();
+//         //     const tapLength = currentTime - lastTap;
+//         //     if (tapLength < 500 && tapLength > 0) {
+//         //         const reel = event.target.closest('.reel');
+//         //         if (reel) {
+//         //             const reelId = parseInt(reel.dataset.reelId);
+//         //             toggleLike(reelId, true);
+//         //         }
+//         //     }
+//         //     lastTap = currentTime;
+//         // });
+
+//         // Like functionality
+//         function toggleLike(reelId, showAnimation = false) {
+//             const reel = reelsData.find(r => r.id === reelId);
+//             if (reel) {
+//                 reel.isLiked = !reel.isLiked;
+//                 reel.likes += reel.isLiked ? 1 : -1;
+                
+//                 if (showAnimation) {
+//                     const reelElement = document.querySelector(`[data-reel-id="${reelId}"]`);
+//                     const heart = reelElement.querySelector('.like-animation');
+//                     heart.style.opacity = '1';
+//                     heart.style.transform = 'translate(-50%, -50%) scale(1.2)';
+//                     setTimeout(() => {
+//                         heart.style.opacity = '0';
+//                         heart.style.transform = 'translate(-50%, -50%) scale(1)';
+//                     }, 1000);
+//                 }
+                
+//                 renderReels();
+//             }
+//         }
+
+//         // Bookmark functionality
+//         function toggleBookmark(reelId) {
+//             const reel = reelsData.find(r => r.id === reelId);
+//             if (reel) {
+//                 reel.isBookmarked = !reel.isBookmarked;
+//                 const bookmarkBtn = document.querySelector(`[data-reel-id="${reelId}"] .fa-bookmark`).parentElement;
+//                 bookmarkBtn.classList.add('bookmark-animation');
+//                 setTimeout(() => bookmarkBtn.classList.remove('bookmark-animation'), 200);
+//                 renderReels();
+//             }
+//         }
+
+        // Comment functionality
+        // function openComments(reelId) {
+        //     const commentSection = document.querySelector('.comment-section');
+        //     commentSection.classList.add('active');
+        //     renderComments(reelId);
+        // }
+
+        // function closeComments() {
+        //     document.querySelector('.comment-section').classList.remove('active');
+        // }
+
+        // function renderComments(reelId) {
+        //     const reel = reelsData.find(r => r.id === reelId);
+        //     const commentList = document.querySelector('.comment-list');
+        //     commentList.innerHTML = reel.comments.map(comment => `
+        //         <div class="comment">
+        //             <img src="/api/placeholder/32/32" alt="" class="comment-avatar">
+        //             <div class="comment-content">
+        //                 <span class="comment-username">user123</span>
+        //                 <span class="comment-text">${comment}</span>
+        //                 </div>
+        //         </div>
+        //     `).join('');
+
+        //     // Add event listener to comment input
+        //     const commentInput = document.querySelector('.comment-input');
+        //     commentInput.onkeypress = function(e) {
+        //         if (e.key === 'Enter' && this.value.trim()) {
+        //             reel.comments.push(this.value.trim());
+        //             this.value = '';
+        //             renderComments(reelId);
+        //             renderReels(); // Update comment count in reel
+        //         }
+        //     };
+        // }
+// Render reels - only called once initially
+function renderReels() {
+    const container = document.querySelector('.reels-container');
+    container.innerHTML = reelsData.map(reel => `
+        <div class="reel" data-reel-id="${reel.id}">
+            <video class="reel-video" loop>
+                <source src="${reel.video}" type="video/mp4">
+            </video>
+            <div class="like-animation">
+                <i class="fas fa-heart"></i>
+            </div>
+            <div class="reel-actions">
+                <button class="action-button" onclick="toggleLike(${reel.id})">
+                    <i class="fa${reel.isLiked ? 's' : 'r'} fa-heart"></i>
+                    <span class="action-count">${reel.likes}</span>
+                </button>
+                <button class="action-button" onclick="toggleComments(${reel.id})">
+                    <i class="far fa-comment"></i>
+                    <span class="action-count">${reel.comments.length}</span>
+                </button>
+                <button class="action-button" onclick="openShareModal()">
+                    <i class="far fa-paper-plane"></i>
+                </button>
+                <button class="action-button" onclick="toggleBookmark(${reel.id})">
+                    <i class="fa${reel.isBookmarked ? 's' : 'r'} fa-bookmark"></i>
+                </button>
+            </div>
+            <div class="reel-info">
+                <div class="reel-user">
+                    <img src="${reel.user.avatar}" alt="" class="user-avatar">
+                    <span>${reel.user.username}</span>
+                </div>
+                <div class="reel-caption">${reel.caption}</div>
+            </div>
+        </div>
+    `).join('');
+
+    // Add click event listeners to videos after rendering
+    document.querySelectorAll('.reel-video').forEach(video => {
+        video.addEventListener('click', () => togglePlay(video));
+    });
+
+    // Set up intersection observer for autoplay
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target.querySelector('video');
+            if (entry.isIntersecting) {
+                // Pause all other videos
+                document.querySelectorAll('.reel-video').forEach(v => {
+                    if (v !== video) {
+                        v.pause();
+                    }
+                });
+                
+                // Play the intersecting video
+                video.play().catch(error => {
+                    console.log('Autoplay was prevented:', error);
+                });
+            } else {
+                video.pause();
+            }
+        });
+    }, { 
+        threshold: 0.7,
+        rootMargin: '0px'
+    });
+
+    // Observe all reels
+    document.querySelectorAll('.reel').forEach(reel => {
+        observer.observe(reel);
+    });
+
+    // Start the first video
+    const firstVideo = document.querySelector('.reel-video');
+    if (firstVideo) {
+        firstVideo.play().catch(error => {
+            console.log('Initial autoplay was prevented:', error);
+        });
+    }
+}
+
+// Toggle play/pause function
+function togglePlay(video) {
+    // Stop all other videos first
+    document.querySelectorAll('.reel-video').forEach(v => {
+        if (v !== video) {
+            v.pause();
+        }
+    });
+    
+    if (video.paused) {
+        video.play().catch(error => {
+            console.log('Play was prevented:', error);
+        });
+    } else {
+        video.pause();
+    }
+}
+
+// Update specific elements instead of re-rendering
+function updateReelUI(reelId) {
+    const reel = reelsData.find(r => r.id === reelId);
+    if (!reel) return;
+
+    const reelElement = document.querySelector(`[data-reel-id="${reelId}"]`);
+    if (!reelElement) return;
+
+    // Update like button
+    const likeButton = reelElement.querySelector('.action-button:first-child');
+    const likeIcon = likeButton.querySelector('i');
+    const likeCount = likeButton.querySelector('.action-count');
+    likeIcon.className = `fa${reel.isLiked ? 's' : 'r'} fa-heart`;
+    likeCount.textContent = reel.likes;
+
+    // Update bookmark button
+    const bookmarkButton = reelElement.querySelector('.action-button:last-child');
+    const bookmarkIcon = bookmarkButton.querySelector('i');
+    bookmarkIcon.className = `fa${reel.isBookmarked ? 's' : 'r'} fa-bookmark`;
+
+    // Update comment count if needed
+    const commentCount = reelElement.querySelector('.action-button:nth-child(2) .action-count');
+    commentCount.textContent = reel.comments.length;
+}
+
+// Modified interaction functions
+function toggleLike(reelId, showAnimation = false) {
+    const reel = reelsData.find(r => r.id === reelId);
+    if (reel) {
+        reel.isLiked = !reel.isLiked;
+        reel.likes += reel.isLiked ? 1 : -1;
+        
+        if (showAnimation) {
+            const reelElement = document.querySelector(`[data-reel-id="${reelId}"]`);
+            const heart = reelElement.querySelector('.like-animation');
+            heart.style.opacity = '1';
+            heart.style.transform = 'translate(-50%, -50%) scale(1.2)';
+            setTimeout(() => {
+                heart.style.opacity = '0';
+                heart.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 1000);
+        }
+        
+        updateReelUI(reelId); // Update UI instead of re-rendering
+    }
+}
+
+function toggleBookmark(reelId) {
+    const reel = reelsData.find(r => r.id === reelId);
+    if (reel) {
+        reel.isBookmarked = !reel.isBookmarked;
+        const bookmarkBtn = document.querySelector(`[data-reel-id="${reelId}"] .fa-bookmark`).parentElement;
+        bookmarkBtn.classList.add('bookmark-animation');
+        setTimeout(() => bookmarkBtn.classList.remove('bookmark-animation'), 200);
+        updateReelUI(reelId); // Update UI instead of re-rendering
+    }
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', renderReels);
+        function toggleComments(reelId) {
+            const commentSection = document.getElementById('commentSection');
+            commentSection.classList.toggle('active');
+            if (reelId) {
+                currentReelId = reelId;
+                renderComments();
+            }
+        }
+
+        function renderComments() {
+            const reels = reelsData.find(r => r.id === currentReelId);
+            if (reels) {
+                const container = document.getElementById('commentsContainer');
+                container.innerHTML = reels.comments.map(comment => `
+                    <div class="comment">
+                        <div class="comment-content">
+                            <span class="comment-text">${comment}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            commentInput.onkeypress = function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    reels.comments.push(this.value.trim());
+                    this.value = '';
+                    renderComments();
+                    renderReels(); // Update comment count in reel
+                }
+            };
+
+            
+        }
+
+      
+        function postComment() {
+            const input = document.getElementById('commentInput');
+            const comment = input.value.trim();
+            if (comment && currentReelId) {
+                const reels = reelsData.find(r => r.id === currentReelId);
+                if (reels) {
+                    reels.comments.push(comment);
+                    input.value = '';
+                    renderComments();
+                    renderReels(); // Update comment count in reel actions
+                }
+            }
+        }
+
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const commentSection = document.getElementById('commentSection');
+                if (commentSection.classList.contains('active')) {
+                    toggleComments();
+                }
+                closeShareModal();
+            }
+        });
+
+        // Share functionality
+        function openShareModal() {
+            document.querySelector('.share-modal').style.display = 'block';
+        }
+
+        function closeShareModal() {
+            document.querySelector('.share-modal').style.display = 'none';
+        }
+
+        function shareToSocial(platform) {
+            const url = encodeURIComponent(window.location.href);
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'instagram':
+                    // Since Instagram doesn't have a direct share URL, we'll show an alert
+                    alert('Open Instagram app to share');
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${url}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank');
+            }
+            
+            closeShareModal();
+        }
+
+        // Infinite scroll simulation
+        let loadingMore = false;
+        
+        document.querySelector('.reels-container').addEventListener('scroll', function(e) {
+            const container = e.target;
+            const scrollPosition = container.scrollTop + container.clientHeight;
+            const scrollHeight = container.scrollHeight;
+            
+            // If we're near the bottom and not already loading
+            if (scrollHeight - scrollPosition < 100 && !loadingMore) {
+                loadMoreReels();
+            }
+        });
+
+        function loadMoreReels() {
+            loadingMore = true;
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                // Create new reels by copying and modifying existing ones
+                const newReels = reelsData.map(reel => ({
+                    ...reel,
+                    id: reel.id + reelsData.length,
+                    likes: Math.floor(Math.random() * 5000),
+                    comments: [],
+                    isLiked: false,
+                    isBookmarked: false
+                }));
+                
+                // Add new reels to the data
+                reelsData.push(...newReels);
+                
+                // Re-render all reels
+                renderReels();
+                
+                // Setup intersection observer for new reels
+                document.querySelectorAll('.reel').forEach(reel => {
+                    observer.observe(reel);
+                });
+                
+                loadingMore = false;
+            }, 1000);
+        }
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const shareModal = document.querySelector('.share-modal');
+            if (event.target === shareModal) {
+                closeShareModal();
+            }
+        }
+
+        // Handle keyboard events
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeShareModal();
+                closeComments();
+            }
+        });
+
+        // Prevent video controls from showing
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.reel-video').forEach(video => {
+                video.controls = false;
+            });
+        });
+
+        // Add swipe navigation (optional)
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndY = e.changedTouches[0].clientY;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeDistance = touchEndY - touchStartY;
+            const container = document.querySelector('.reels-container');
+            const currentScroll = container.scrollTop;
+            const reelHeight = window.innerHeight;
+
+            if (Math.abs(swipeDistance) > 50) {
+                if (swipeDistance > 0) {
+                    // Swipe down - go to previous reel
+                    container.scrollTo({
+                        top: Math.floor(currentScroll / reelHeight) * reelHeight - reelHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Swipe up - go to next reel
+                    container.scrollTo({
+                        top: Math.ceil(currentScroll / reelHeight) * reelHeight + reelHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+
+        // Add volume control with double tap on left/right sides
+        // document.addEventListener('dblclick', function(e) {
+        //     const video = e.target.closest('.reel-video');
+        //     if (video) {
+        //         const rect = video.getBoundingClientRect();
+        //         const x = e.clientX - rect.left;
+                
+        //         if (x < rect.width / 3) {
+        //             // Double tap on left third - mute/unmute
+        //             video.muted = !video.muted;
+        //         } else if (x > (rect.width / 3) * 2) {
+        //             // Double tap on right third - mute/unmute
+        //             video.muted = !video.muted;
+        //         } else {
+        //             // Double tap in middle - like
+        //             const reelId = parseInt(video.closest('.reel').dataset.reelId);
+        //             toggleLike(reelId, true);
+        //         }
+        //     }
+        // });
+        // Get DOM elements
+const settingsModal = document.getElementById('settings-modal');
+const settingsLink = document.querySelector('.dropdown-item:first-child');
+const closeSettings = document.querySelector('.close-settings');
+const changeStatusBtn = document.querySelector('.change-status-btn');
+
+// Show settings modal when clicking on Settings in dropdown
+settingsLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    settingsModal.style.display = 'block';
+    moreDropdown.classList.remove('show'); // Close dropdown when opening settings
+});
+
+// Close settings modal when clicking on X
+closeSettings.addEventListener('click', () => {
+    settingsModal.style.display = 'none';
+});
+
+// Close settings modal when clicking outside
+window.addEventListener('click', (e) => {
+    if (e.target === settingsModal) {
+        settingsModal.style.display = 'none';
+    }
+});
+
+// Create toast notification function
+function showToast(message) {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    // Show toast
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+
+    // Hide and remove toast
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
+// Handle profile status change
+changeStatusBtn.addEventListener('click', () => {
+    const selectedStatus = document.querySelector('input[name="profile-status"]:checked').value;
+    showToast(`Your account status has been changed to ${selectedStatus}`);
+    settingsModal.style.display = 'none';
+});
+    
+document.addEventListener('DOMContentLoaded', function() {
+    const reportModal = document.getElementById('report-modal');
+    const closeReport = document.querySelector('.close-report');
+    const reportForm = document.getElementById('reportForm');
+    const reportSubmitBtn = document.getElementById('report-submit-btn');
+    const reportSuccessAlert = document.getElementById('report-success-alert');
+
+    // Get the "Report a problem" link
+    const reportProblemLink = document.querySelector('.dropdown-item:nth-child(3)');
+
+    // Open report modal when clicking "Report a problem"
+    reportProblemLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        reportModal.style.display = 'block';
+        if (moreDropdown) {
+            moreDropdown.classList.remove('show'); // Close dropdown
+        }
+    });
+
+    // Close report modal when clicking X
+    closeReport.addEventListener('click', () => {
+        reportModal.style.display = 'none';
+    });
+
+    // Close report modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === reportModal) {
+            reportModal.style.display = 'none';
+        }
+    });
+
+    // Handle form submission
+    reportForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Disable submit button
+        reportSubmitBtn.disabled = true;
+        reportSubmitBtn.textContent = 'Submitting...';
+
+        // Simulate form submission (replace with actual API call)
+        setTimeout(() => {
+            // Show success message
+            reportSuccessAlert.style.display = 'block';
+            
+            // Reset form
+            reportForm.reset();
+            
+            // Close modal after delay
+            setTimeout(() => {
+                reportModal.style.display = 'none';
+                reportSuccessAlert.style.display = 'none';
+                reportSubmitBtn.disabled = false;
+                reportSubmitBtn.textContent = 'Submit Report';
+            }, 2000);
+        }, 1000);
+    });
+});
+
+    // Logout functionality
+    const logoutBtn = document.getElementById('logout-btn');
+        const logoutModal = document.getElementById('logout-modal');
+        const logoutCancel = document.getElementById('logout-cancel');
+        const logoutYes = document.getElementById('logout-yes');
+
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            logoutModal.style.display = 'flex';
+            moreDropdown.classList.remove('show');
+        });
+
+        logoutCancel.addEventListener('click', () => {
+            logoutModal.style.display = 'none';
+        });
+
+        logoutYes.addEventListener('click', () => {
+            localStorage.clear(); // Clear any stored user data
+            window.location.href = 'login_signup.html';
+        });
+
+        // Close modal when clicking outside
+        logoutModal.addEventListener('click', (e) => {
+            if (e.target === logoutModal) {
+                logoutModal.style.display = 'none';
+            }
+        });
+
+        // Add keyboard support for closing modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && logoutModal.style.display === 'flex') {
+                logoutModal.style.display = 'none';
+            }
+        });
+
+        const savedContent = {
+            posts: [
+                {
+                    id: 1,
+                    image: "photos/pb-1.jpg",
+                    likes: 1234,
+                    comments: 56
+                },
+                {
+                    id: 2,
+                    image: "photos/pg-1.jpg",
+                    likes: 789,
+                    comments: 34
+                },
+                {
+                    id: 3,
+                    image: "photos/pb-2.jpg",
+                    likes: 432,
+                    comments: 21
+                },
+                {
+                    id: 4,
+                    image: "photos/pg-2.jpg",
+                    likes: 876,
+                    comments: 45
+                },
+                {
+                    id: 5,
+                    image: "photos/pb-3.jpg",
+                    likes: 543,
+                    comments: 23
+                }
+            ],
+            reels: [
+                {
+                    id: 1,
+                    thumbnail: "photos/storyb-10.jpg",
+                    views: 5678,
+                    likes: 234
+                },
+                {
+                    id: 2,
+                    thumbnail: "photos/storyg-10.jpg",
+                    views: 3456,
+                    likes: 167
+                },
+                {
+                    id: 3,
+                    thumbnail: "photos/storyg-9.jpg",
+                    views: 2345,
+                    likes: 89
+                }
+            ]
+        };
+
+        // Get DOM elements
+        const savedModal = document.getElementById('saved-modal');
+        const savedLink = document.querySelector('.dropdown-item:nth-child(2)');
+        const closeSaved = document.querySelector('.close-saved');
+        const savedTabs = document.querySelectorAll('.saved-tab');
+        const savedPosts = document.getElementById('saved-posts');
+        const savedReels = document.getElementById('saved-reels');
+
+        // Show saved modal when clicking on Saved in dropdown
+        savedLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            savedModal.style.display = 'block';
+            moreDropdown.classList.remove('show'); // Close dropdown
+            renderSavedContent('posts'); // Initially render posts
+        });
+
+        // Close saved modal
+        closeSaved.addEventListener('click', () => {
+            savedModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === savedModal) {
+                savedModal.style.display = 'none';
+            }
+        });
+
+        // Handle tab switching
+        savedTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                savedTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                // Show corresponding content
+                const contentType = tab.dataset.tab;
+                savedPosts.style.display = contentType === 'posts' ? 'grid' : 'none';
+                savedReels.style.display = contentType === 'reels' ? 'grid' : 'none';
+
+                // Render content
+                renderSavedContent(contentType);
+            });
+        });
+
+        // Render saved content
+        function renderSavedContent(type) {
+            const container = type === 'posts' ? savedPosts : savedReels;
+            const items = savedContent[type];
+
+            if (items.length === 0) {
+                container.innerHTML = `
+                    <div class="no-saved-content">
+                        <p>No saved ${type} yet</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = items.map(item => `
+                <div class="saved-item">
+                    <img src="${type === 'posts' ? item.image : item.thumbnail}" alt="Saved ${type}">
+                    <div class="saved-item-overlay">
+                        <div class="saved-stats">
+                            ${type === 'posts' ? `
+                                <div class="saved-stat">
+                                    <i class="fas fa-heart"></i>
+                                    <span>${item.likes}</span>
+                                </div>
+                                <div class="saved-stat">
+                                    <i class="fas fa-comment"></i>
+                                    <span>${item.comments}</span>
+                                </div>
+                            ` : `
+                                <div class="saved-stat">
+                                    <i class="fas fa-play"></i>
+                                    <span>${item.views}</span>
+                                </div>
+                                <div class="saved-stat">
+                                    <i class="fas fa-heart"></i>
+                                    <span>${item.likes}</span>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+    </script>
+</body>
+</html>
